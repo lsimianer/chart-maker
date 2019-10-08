@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>design demo - lukas - rater team</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="./graph.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="https://www.clutchanalytics.com/" target="blank"><img id='navLogo'
+                src="./images/logoClutch.png"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Regional Controls</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Work In Progress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Create Ticket & Report Issue</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id='mainBody' class="grid-container">
+        <div class="grid-item">
+            <button id='reset' class="btn" onclick="clearData(19)">RESET</button>
+            <h3>Inputs for fy 2019</h3>
+            <button id='submit' class="btn" onclick="getData()">POPULATE</button>
+
+            <div class="g">
+                <input id="January19" type='number' placeholder="January">
+                <input id="February19" type='number' placeholder="February">
+                <input id="March19" type='number' placeholder="March">
+                <input id="April19" type='number' placeholder="April">
+                <input id="May19" type='number' placeholder="May">
+                <input id="June19" type='number' placeholder="June">
+                <input id="July19" type='number' placeholder="July">
+                <input id="August19" type='number' placeholder="August">
+                <input id="September19" type='number' placeholder="September">
+                <input id="October19" type='number' placeholder="October">
+                <input id="November19" type='number' placeholder="November">
+                <input id="December19" type='number' placeholder="December">
+
+            </div>
+        </div>
+        <div class="grid-item">
+            <button id='reset' class="btn" onclick="clearData(18)">RESET</button>
+            <h3>Inputs for fy 2018</h3>
+            <button id='submit' class="btn" onclick="getData()">POPULATE</button>
+
+            <div class="g">
+                <input id="January18" placeholder="January">
+                <input id="February18" placeholder="February">
+                <input id="March18" placeholder="March">
+                <input id="April18" placeholder="April">
+                <input id="May18" placeholder="May">
+                <input id="June18" placeholder="June">
+                <input id="July18" placeholder="July">
+                <input id="August18" placeholder="August">
+                <input id="September18" placeholder="September">
+                <input id="October18" placeholder="October">
+                <input id="November18" placeholder="November">
+                <input id="December18" placeholder="December">
+            </div>
+        </div>
+    </section>
+    <section id='charts'>
+        <div id='container'>
+            <canvas id="myChart" width="80%" height="40%"></canvas>
+        </div>
+    </section>
+    <footer id="footer">
+        <a href="https://www.clutchanalytics.com/" target="blank">
+            <img id='footPic' src="./images/logoClutch.png">
+        </a>
+        <h4 class="footText"> &copy; Clutch Analytics 2019</h4>
+    </footer>
+
+
+    <script>
+        // var jan19 = document.getElementById('january19').innerHTML;
+        // console.log('zebra', jan19);
+        var jan19;
+        var feb19;
+        var mar19;
+        var apr19;
+        var may19;
+        var jun19;
+        var jul19;
+        var aug19;
+        var sep19;
+        var oct19;
+        var nov19;
+        var dec19;
+
+        var jan18;
+        var feb18;
+        var mar18;
+        var apr18;
+        var may18;
+        var jun18;
+        var jul18;
+        var aug18;
+        var sep18;
+        var oct18;
+        var nov18;
+        var dec18;
+
+        const chart = document.getElementById('myChart');
+
+
+
+        function getData() {
+
+            jan19 = +document.getElementById('January19').value;
+            feb19 = +document.getElementById('February19').value;
+            mar19 = +document.getElementById('March19').value;
+            apr19 = +document.getElementById('April19').value;
+            may19 = +document.getElementById('May19').value;
+            jun19 = +document.getElementById('June19').value;
+            jul19 = +document.getElementById('July19').value;
+            aug19 = +document.getElementById('August19').value;
+            sep19 = +document.getElementById('September19').value;
+            oct19 = +document.getElementById('October19').value;
+            nov19 = +document.getElementById('November19').value;
+            dec19 = +document.getElementById('December19').value;
+
+            jan18 = +document.getElementById('January18').value;
+            feb18 = +document.getElementById('February18').value;
+            mar18 = +document.getElementById('March18').value;
+            apr18 = +document.getElementById('April18').value;
+            may18 = +document.getElementById('May18').value;
+            jun18 = +document.getElementById('June18').value;
+            jul18 = +document.getElementById('July18').value;
+            aug18 = +document.getElementById('August18').value;
+            sep18 = +document.getElementById('September18').value;
+            oct18 = +document.getElementById('October18').value;
+            nov18 = +document.getElementById('November18').value;
+            dec18 = +document.getElementById('December18').value;
+
+
+            myChart.data.datasets[0].data[0] = jan19
+            myChart.data.datasets[0].data[1] = feb19
+            myChart.data.datasets[0].data[2] = mar19
+            myChart.data.datasets[0].data[3] = apr19
+            myChart.data.datasets[0].data[4] = may19
+            myChart.data.datasets[0].data[5] = jun19
+            myChart.data.datasets[0].data[6] = jul19
+            myChart.data.datasets[0].data[7] = aug19
+            myChart.data.datasets[0].data[8] = sep19
+            myChart.data.datasets[0].data[9] = oct19
+            myChart.data.datasets[0].data[10] = nov19
+            myChart.data.datasets[0].data[11] = dec19
+
+            myChart.data.datasets[1].data[0] = jan18
+            myChart.data.datasets[1].data[1] = feb18
+            myChart.data.datasets[1].data[2] = mar18
+            myChart.data.datasets[1].data[3] = apr18
+            myChart.data.datasets[1].data[4] = may18
+            myChart.data.datasets[1].data[5] = jun18
+            myChart.data.datasets[1].data[6] = jul18
+            myChart.data.datasets[1].data[7] = aug18
+            myChart.data.datasets[1].data[8] = sep18
+            myChart.data.datasets[1].data[9] = oct18
+            myChart.data.datasets[1].data[10] = nov18
+            myChart.data.datasets[1].data[11] = dec18
+
+            console.log('get data benn ran bro, now run those hands')
+            myChart.update();
+        }
+
+        function clearData(year) {
+            const inputs = document.getElementsByTagName('input')
+            const keys = Object.keys(inputs);
+
+            keys.forEach(key => {
+                if (inputs[key].id.includes(year.toString())) {
+                    console.log(true)
+                    inputs[key].value = ""
+                } else {
+                    console.log(false)
+                }
+            });
+            console.log('clear data ran');
+            getData();
+        };
+
+
+
+        //code for chart begins
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    data: [jan19, feb19, mar19, apr19, may19, jun19, jul19, aug19, sep19, oct19, nov19,
+                        dec19
+                    ],
+                    label: '2019',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+
+                    // This binds the dataset to the left y axis
+                    yAxisID: 'left-y-axis'
+                }, {
+                    data: [jan18, feb18, mar18, apr18, may18, jun18, jul18, aug18, sep18, oct18, nov18,
+                        dec18
+                    ],
+                    label: '2018',
+                    backgroundColor: 'black',
+                    borderColor: 'red',
+
+                    // This binds the dataset to the right y axis
+                    yAxisID: 'right-y-axis'
+                }],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            options: {
+
+
+                scales: {
+                    yAxes: [{
+                        id: 'left-y-axis',
+                        type: 'linear',
+                        position: 'left'
+                    }, {
+                        id: 'right-y-axis',
+                        type: 'linear',
+                        position: 'right'
+                    }]
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
