@@ -42,19 +42,6 @@
     <section id='mainBody' class="slider container">
         <div class="form">
             <h1 class='greenText'> Mongo Query Builder</h1>
-            <!-- What format is your is your payload in
-            <select id="one">
-                <option value="XML">XML</option>
-                <option value="JSON">JSON</option>
-                <option value="UNKNOWN">UNKNOWN</option>
-            </select>?
-            <br>
-            What are you searching for
-            <select id="two">
-                <option value="QUOTE">QUOTE</option>
-                <option value="PAYLOAD">PAYLOAD</option>
-            </select>?
-            <br> -->
             Paste your quote ID here:
             <input id="quoteId" placeholder="Enter your quote ID">
             <br>
@@ -88,18 +75,20 @@
             CobraHead = 'db.cobrapayloads.find({quoteId:\"' + quoteID + '\"}).pretty()';
             ResponseHead = 'db.quotes.find({"policy.quoteId":\"' + quoteID + '\"}).pretty()';
             // populate the response 
-            responseDiv.innerHTML = "<h3>"+"XML quote query: " +"</h3>" + "<p id='xmlHead'>" + XMLhead +'</p>'+ '<br>' +  '<br>' + '<h3>' + "Cobra/JSON Payload query: " + "</h3>" + "<p>" + CobraHead + '</p>' + '<br>' + '<br>' + '<h3>' + "Response Query: " +"</h3>" + "<p>" + ResponseHead+ '</p>'; 
+            responseDiv.innerHTML = "<h3>" + "XML quote query: " + "</h3>" + "<p id='xmlHead'>" + XMLhead + '</p>' +
+                '<br>' + '<br>' + '<h3>' + "Cobra/JSON Payload query: " + "</h3>" + "<p>" + CobraHead + '</p>' +
+                '<br>' + '<br>' + '<h3>' + "Response Query: " + "</h3>" + "<p>" + ResponseHead + '</p>';
         };
 
 
-    //    function xmlCopy(){
-    //     responseDiv.innerHTML = "<input id='inputxml' value="+ ">
-    //        var copyText = document.getElementById('xmlHead');
-    //        console.log(copyText);
+        //    function xmlCopy(){
+        //     responseDiv.innerHTML = "<input id='inputxml' value="+ ">
+        //        var copyText = document.getElementById('xmlHead');
+        //        console.log(copyText);
 
-    //        copyText.select();
-    //        document.execCommand("copy");
-    //    }
+        //        copyText.select();
+        //        document.execCommand("copy");
+        //    }
     </script>
 </body>
 

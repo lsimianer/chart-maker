@@ -96,8 +96,6 @@
 
 
     <script>
-        // var jan19 = document.getElementById('january19').innerHTML;
-        // console.log('zebra', jan19);
         var jan19;
         var feb19;
         var mar19;
@@ -183,7 +181,6 @@
             myChart.data.datasets[1].data[10] = nov18
             myChart.data.datasets[1].data[11] = dec18
 
-            console.log('get data benn ran bro, now run those hands')
             myChart.update();
         }
 
@@ -193,13 +190,10 @@
 
             keys.forEach(key => {
                 if (inputs[key].id.includes(year.toString())) {
-                    console.log(true)
                     inputs[key].value = ""
                 } else {
-                    console.log(false)
                 }
             });
-            console.log('clear data ran');
             getData();
         };
 
