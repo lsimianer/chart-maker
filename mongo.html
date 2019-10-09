@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>design demo - lukas - rater team</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="./mongo.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="https://www.clutchanalytics.com/" target="blank"><img id='navLogo'
+                src="./images/logoClutch.png"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./mongo.html">Query Builder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Work In Progress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Create Ticket & Report Issue</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id='mainBody' class="slider container">
+        <div class="form">
+            <h1 class='greenText'> Mongo Query Builder</h1>
+            <!-- What format is your is your payload in
+            <select id="one">
+                <option value="XML">XML</option>
+                <option value="JSON">JSON</option>
+                <option value="UNKNOWN">UNKNOWN</option>
+            </select>?
+            <br>
+            What are you searching for
+            <select id="two">
+                <option value="QUOTE">QUOTE</option>
+                <option value="PAYLOAD">PAYLOAD</option>
+            </select>?
+            <br> -->
+            Paste your quote ID here:
+            <input id="quoteId" placeholder="Enter your quote ID">
+            <br>
+            <button id="submit" onclick="buildQuery()"> Build my Query </button>
+        </div>
+        <br>
+        <div id="results">
+            <h2 class="greenText"> Your Query</h2>
+        </div>
+        <!-- <div class="btnCon">
+            <button id="XMLCopy" onclick="xmlCopy()">Copy XML</button>
+            <button id="CobraCopy">Copy Cobra</button>
+            <button id="ResponseCopy">Copy Response</button>
+        </div> -->
+    </section>
+
+    <script>
+        var quoteID;
+        var XMLhead;
+        var CobraHead;
+        var ResponseHead;
+        var responseDiv = document.getElementById('results');
+        var copyText;
+        //define the components youll need above
+
+        function buildQuery() {
+            quoteID = document.getElementById('quoteId').value;
+            console.log(quoteID);
+            //build the queries for the user
+            XMLhead = 'decodeURIComponent(db.xmlreqres.findOne({quoteId:\"' + quoteID + '\" }).req)';
+            CobraHead = 'db.cobrapayloads.find({quoteId:\"' + quoteID + '\"}).pretty()';
+            ResponseHead = 'db.quotes.find({"policy.quoteId":\"' + quoteID + '\"}).pretty()';
+            // populate the response 
+            responseDiv.innerHTML = "<h3>"+"XML quote query: " +"</h3>" + "<p id='xmlHead'>" + XMLhead +'</p>'+ '<br>' +  '<br>' + '<h3>' + "Cobra/JSON Payload query: " + "</h3>" + "<p>" + CobraHead + '</p>' + '<br>' + '<br>' + '<h3>' + "Response Query: " +"</h3>" + "<p>" + ResponseHead+ '</p>'; 
+        };
+
+
+    //    function xmlCopy(){
+    //     responseDiv.innerHTML = "<input id='inputxml' value="+ ">
+    //        var copyText = document.getElementById('xmlHead');
+    //        console.log(copyText);
+
+    //        copyText.select();
+    //        document.execCommand("copy");
+    //    }
+    </script>
+</body>
+
+</html>
+
+<!--  e14a7a871ca5ce240009e1e3cd6e5bfb36a47a533eca9cb9c4f4d152e90215a6     practice quote id -->
